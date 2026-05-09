@@ -1,14 +1,15 @@
 import { createBrowserRouter } from "react-router";
-import MyLayout from '../layouts/MainLayout';
+import MainLayout from "../layouts/MainLayout/MainLayout";
+
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        Component: MyLayout,
+        Component: MainLayout,
         children: [
             {
                 index: true,
-                
+
             }]
     }])
