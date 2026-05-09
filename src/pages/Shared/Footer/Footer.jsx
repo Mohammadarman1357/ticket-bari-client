@@ -8,7 +8,7 @@ import { BiPhone } from 'react-icons/bi';
 
 const Footer = () => {
     return (
-        <div className='bg-gradient-to-bl from-white via-[#F4FFD1] to-[#CAEB66] py-4 px-8 inter-font'>
+        <div className='bg-gradient-to-tr from-[#CAEB66] via-[#F4FFD1] to-yellow-200 py-4 px-8 inter-font'>
 
             <footer className="footer sm:footer-horizontal p-10 text-secondary">
                 <nav>
