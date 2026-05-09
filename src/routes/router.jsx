@@ -7,6 +7,9 @@ import Register from "../pages/Auth/Register/Register";
 import Error from "../pages/Error/Error";
 import PrivateRoute from "./PrivateRoute";
 import AllTickets from "../pages/AllTickets/AllTickets";
+import Dashboard from "../layouts/Dashboard/Dashboard";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import Profile from "../pages/Dashboard/Profile/Profile";
 
 
 
@@ -38,6 +41,21 @@ export const router = createBrowserRouter([
                 Component: Register
             }
         ]
+    },
+    {
+        path:'/dashboard',
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children:[
+            {
+                index:true,
+                Component:DashboardHome
+            },
+            {
+                path:'profile',
+                Component:Profile
+            }
+        ]
+
     },
     {
         path: '/*',

@@ -17,13 +17,13 @@ const NavBar = () => {
     }
 
     const links = <>
-        <li><NavLink to={"/"} className={'text-[#606060] font-medium'}>Home</NavLink></li>
-        <li><NavLink to="/all-tickets" className={'text-[#606060] font-medium'}>All Tickets</NavLink></li>
-        <li><NavLink to={"/dashboard"} className={'text-[#606060] font-medium'}>Dashboard</NavLink></li>
+        <li><NavLink to={"/"} className={'text-[#606060] font-medium focus:bg-primary'}>Home</NavLink></li>
+        <li><NavLink to="/all-tickets" className={'text-[#606060] font-medium focus:bg-primary'}>All Tickets</NavLink></li>
+        <li><NavLink to={"/dashboard"} className={'text-[#606060] font-medium focus:bg-primary'}>Dashboard</NavLink></li>
 
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm md:py-4 md:px-5 rounded-br-2xl rounded-bl-2xl">
+        <div className="navbar bg-base-100 shadow-sm md:py-4 md:px-5 rounded-br-2xl rounded-bl-2xl sticky top-0 z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
