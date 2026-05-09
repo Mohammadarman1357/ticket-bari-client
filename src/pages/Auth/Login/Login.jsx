@@ -1,16 +1,18 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signInUser } = useAuth();
+    const { register, control, handleSubmit, formState: { errors } } = useForm();
+    const { signInUser, forgetPassword } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
 
+    const userEmail = useWatch({ control, name: 'email' });
 
     const handleLogin = (data) => {
         console.log(data);
@@ -22,6 +24,35 @@ const Login = () => {
             .catch((error) => {
                 console.log(error)
             })
+    }
+
+    const handleForgetPassword = () => {
+        // console.log(userEmail);
+
+        if (!userEmail) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+            });
+            return;
+        }
+
+        forgetPassword(userEmail)
+            .then(() => {
+
+                Swal.fire({
+                    title: "Please check your Email to reset your password.",
+                    width: 600,
+                    padding: "3em",
+                    color: "#716add",
+                    background: "#fff url(/images/trees.png)",
+                    backdrop: `rgba(0,0,123,0.4) url("/images/nyan-cat.gif") left top no-repeat`
+                });
+            })
+            .catch(error =>
+                console.log(error)
+            )
     }
 
     return (
@@ -52,7 +83,7 @@ const Login = () => {
                         </p>
                     }
 
-                    <div><a className="link link-hover text-[#71717A]">Forgot password?</a></div>
+                    <div onClick={handleForgetPassword}><a className="link link-hover text-[#71717A]">Forgot password?</a></div>
                     <button className="btn btn-primary text-secondary mt-4">Login</button>
                 </fieldset>
                 <p className='text-[#71717A] mr-2'>Don't have any account?

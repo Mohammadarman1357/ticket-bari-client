@@ -23,7 +23,7 @@ const NavBar = () => {
 
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm md:py-5 md:px-6 rounded-br-2xl rounded-bl-2xl">
+        <div className="navbar bg-base-100 shadow-sm md:py-4 md:px-5 rounded-br-2xl rounded-bl-2xl">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,14 +48,11 @@ const NavBar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        // <a
-                        //     onClick={handleLogOut}
-                        //     className="btn hover:btn-primary btn-outline btn-[#606060] text-[#606060] rounded-xl">LogOut</a>
+
                         (
                             <div className="dropdown dropdown-end">
                                 <div
                                     tabIndex={0}
-                                    role="button"
                                     className="flex items-center gap-2 cursor-pointer"
                                 >
                                     <img
@@ -75,21 +72,21 @@ const NavBar = () => {
                                 >
                                     <li>
                                         <Link to="/profile">
-                                            My Profile
+                                            <h2 className='text-secondary font-bold text-xl'>My Profile</h2>
                                         </Link>
                                     </li>
 
                                     <li>
                                         <a
                                             onClick={handleLogOut}
-                                            className="btn hover:btn-primary btn-outline btn-[#606060] text-[#606060] rounded-xl">LogOut</a>
+                                            className="btn hover:btn-primary btn-outline btn-[#606060] text-[#606060] rounded-xl mt-2">LogOut</a>
                                     </li>
                                 </ul>
                             </div>
                         )
                         :
                         <>
-                            <Link to="/login" className="btn hover:btn-primary btn-outline btn-[#606060] rounded-xl text-[#606060]">Login</Link>
+                            <Link to="/login" className="btn btn-primary btn-[#606060] rounded-xl text-[#606060]">Login</Link>
                         </>
                 }
             </div>
