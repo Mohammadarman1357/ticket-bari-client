@@ -45,7 +45,6 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-
             {/* Banner 2 */}
             <div
                 className="hero min-h-[90vh]"

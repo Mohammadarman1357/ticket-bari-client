@@ -5,6 +5,8 @@ import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
 import Error from "../pages/Error/Error";
+import PrivateRoute from "./PrivateRoute";
+import AllTickets from "../pages/AllTickets/AllTickets";
 
 
 
@@ -16,6 +18,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path:'all-tickets',
+                element:<PrivateRoute><AllTickets></AllTickets></PrivateRoute>
             }
         ]
     },
