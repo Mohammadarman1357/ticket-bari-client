@@ -12,6 +12,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    // get email by usewatch
     const userEmail = useWatch({ control, name: 'email' });
 
     const handleLogin = (data) => {

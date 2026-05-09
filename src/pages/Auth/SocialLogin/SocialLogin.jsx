@@ -13,6 +13,7 @@ const SocialLogin = () => {
         signInGoogle()
             .then(result => {
                 console.log(result.user);
+                navigate(location?.state || '/');
 
                 // create user in the database
                 const userInfo = {
@@ -24,7 +25,6 @@ const SocialLogin = () => {
                 axiosSecure.post('/users', userInfo)
                     .then(res => {
                         console.log('user data hs been stored', res.data);
-                        navigate(location?.state || '/');
                     }
                     )
 
