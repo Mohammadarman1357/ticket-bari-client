@@ -18,6 +18,7 @@ const ManageUsers = () => {
         }
     })
 
+    // admin
     const handleMakeAdmin = user => {
         const roleInfo = { role: 'admin' };
 
@@ -51,6 +52,69 @@ const ManageUsers = () => {
     }
 
     const handleRemoveAdmin = user => {
+        const roleInfo = { role: 'user' };
+        Swal.fire({
+            title: "Are you sure?",
+            text: `User role will be changed to ${roleInfo.role}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Confirm!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        if (res.data.modifiedCount) {
+                            // refresh data
+                            refetch();
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: `${user.displayName} removed from Admin`,
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+                    })
+            }
+        })
+    }
+
+    // vendor
+    const handleMakeVendor = user => {
+        const roleInfo = { role: 'vendor' };
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: `User role will be changed to ${roleInfo.role}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Confirm!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        if (res.data.modifiedCount) {
+                            // refresh data
+                            refetch();
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: `${user.displayName} marked as an Admin`,
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+                        console.log(res.data)
+                    })
+            }
+        })
+    }
+
+    const handleRemoveVendor = user => {
         const roleInfo = { role: 'user' };
         Swal.fire({
             title: "Are you sure?",
@@ -140,15 +204,28 @@ const ManageUsers = () => {
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
                                     <td>
-                                        {
-                                            user.role === 'admin' ?
-                                                <button
-                                                    onClick={() => handleRemoveAdmin(user)}
-                                                    className='btn bg-red-500'><FiShieldOff></FiShieldOff></button> :
-                                                <button
-                                                    onClick={() => handleMakeAdmin(user)}
-                                                    className='btn bg-primary text-secondary'><FaUserShield></FaUserShield></button>
-                                        }
+                                        <div>
+                                            {
+                                                user.role === 'admin' ?
+                                                    <button
+                                                        onClick={() => handleRemoveAdmin(user)}
+                                                        className='btn bg-red-500'><FiShieldOff></FiShieldOff></button> :
+                                                    <button
+                                                        onClick={() => handleMakeAdmin(user)}
+                                                        className='btn bg-primary text-secondary'><FaUserShield></FaUserShield></button>
+                                            }
+                                        </div>
+                                        <div>
+                                            {
+                                                user.role === 'vendor' ?
+                                                    <button
+                                                        onClick={() => handleRemoveVendor(user)}
+                                                        className='btn bg-red-500'><FiShieldOff></FiShieldOff></button> :
+                                                    <button
+                                                        onClick={() => handleMakeVendor(user)}
+                                                        className='btn bg-primary text-secondary'><FaUserShield></FaUserShield></button>
+                                            }
+                                        </div>
                                     </td>
                                     {/* <td>
                                         <button className="btn btn-ghost btn-xs">Actions</button>
