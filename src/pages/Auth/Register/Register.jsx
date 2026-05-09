@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import axios from 'axios';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -56,6 +57,15 @@ const Register = () => {
                         updateUserProfile(userProfile)
                             .then(() => {
                                 console.log("user profile updated");
+
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: "Your has been Register Successfully",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+
                                 navigate(location?.state || '/');
                             })
                             .catch((error) => {

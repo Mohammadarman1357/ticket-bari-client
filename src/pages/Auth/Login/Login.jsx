@@ -19,7 +19,16 @@ const Login = () => {
         console.log(data);
         signInUser(data.email, data.password)
             .then(result => {
-                console.log(result)
+                console.log(result);
+
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Your has been Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
                 navigate(location?.state || '/');
             })
             .catch((error) => {
@@ -34,7 +43,7 @@ const Login = () => {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!",
+                text: "Please Enter Your Email!",
             });
             return;
         }

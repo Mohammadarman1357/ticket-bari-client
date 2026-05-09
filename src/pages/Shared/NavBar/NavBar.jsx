@@ -36,8 +36,10 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <span className="">
-                    <Logo></Logo>
+                <span>
+                    <Link to={'/'}>
+                        <Logo></Logo>
+                    </Link>
                 </span>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -58,10 +60,10 @@ const NavBar = () => {
                                     <img
                                         src={user?.photoURL}
                                         alt="user"
-                                        className="w-10 h-10 rounded-full object-cover border"
+                                        className="w-10 h-10 rounded-full object-cover border-1"
                                     />
 
-                                    <h2 className="hidden md:block font-semibold">
+                                    <h2 className="hidden md:block text-secondary font-semibold">
                                         {user?.displayName}
                                     </h2>
                                 </div>

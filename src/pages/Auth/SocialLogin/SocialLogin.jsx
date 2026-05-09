@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
     const { signInGoogle } = useAuth();
@@ -13,6 +14,14 @@ const SocialLogin = () => {
         signInGoogle()
             .then(result => {
                 console.log(result.user);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Your has been Sign in Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
                 navigate(location?.state || '/');
 
                 // create user in the database
