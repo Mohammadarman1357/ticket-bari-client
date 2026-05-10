@@ -19,6 +19,9 @@ import AdminRoute from "./AdminRoute";
 import ManageTickets from "../pages/Dashboard/AdminPage/ManageTickets/ManageTickets";
 import AdvertiseTickets from "../pages/Dashboard/AdminPage/AdvertiseTickets/AdvertiseTickets";
 import ManageUsers from "../pages/Dashboard/AdminPage/ManageUsers/ManageUsers";
+import TransactionHistory from "../pages/Dashboard/TransactionHistory/TransactionHistory";
+import MyBookedTickets from "../pages/Dashboard/MyBookedTickets/MyBookedTickets";
+import MyProfile from "../pages/MyProfile/MyProfile";
 
 
 
@@ -32,8 +35,12 @@ export const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path:'all-tickets',
-                element:<PrivateRoute><AllTickets></AllTickets></PrivateRoute>
+                path: 'all-tickets',
+                element: <PrivateRoute><AllTickets></AllTickets></PrivateRoute>
+            },
+            {
+                path: 'my-profile',
+                Component: MyProfile
             }
         ]
     },
@@ -52,48 +59,57 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path:'/dashboard',
-        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-        children:[
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
             {
-                index:true,
-                Component:DashboardHome
+                index: true,
+                Component: DashboardHome
             },
             {
-                path:'profile',
-                Component:Profile
+                path: 'profile',
+                Component: Profile
+            },
+            {
+                path: 'transaction-history',
+                Component: TransactionHistory
+            },
+            {
+                path: 'my-booked-tickets',
+                Component: MyBookedTickets
             },
 
             // vendor only routes
             {
-                path:'add-tickets',
-                element:<VendorRoute><AddTickets></AddTickets></VendorRoute>
+                path: 'add-tickets',
+                element: <VendorRoute><AddTickets></AddTickets></VendorRoute>,
+                loader: () => fetch('/src/assets/json/busCounter.json').then(res => res.json())
             },
             {
-                path:'my-added-tickets',
-                element:<VendorRoute><MyAddedTickets></MyAddedTickets></VendorRoute>
+                path: 'my-added-tickets',
+                element: <VendorRoute><MyAddedTickets></MyAddedTickets></VendorRoute>
             },
             {
-                path:'requested-bookings',
-                element:<VendorRoute><RequestedBookings></RequestedBookings></VendorRoute>
+                path: 'requested-bookings',
+                element: <VendorRoute><RequestedBookings></RequestedBookings></VendorRoute>
             },
             {
-                path:'revenue-overview',
-                element:<VendorRoute><RevenueOverview></RevenueOverview></VendorRoute>
+                path: 'revenue-overview',
+                element: <VendorRoute><RevenueOverview></RevenueOverview></VendorRoute>
             },
-            
+
             // admin only routes
             {
-                path:'manage-tickets',
-                element:<AdminRoute><ManageTickets></ManageTickets></AdminRoute>
+                path: 'manage-tickets',
+                element: <AdminRoute><ManageTickets></ManageTickets></AdminRoute>
             },
             {
-                path:'advertise-tickets',
-                element:<AdminRoute><AdvertiseTickets></AdvertiseTickets></AdminRoute>
+                path: 'advertise-tickets',
+                element: <AdminRoute><AdvertiseTickets></AdvertiseTickets></AdminRoute>
             },
             {
-                path:'manage-users',
-                element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+                path: 'manage-users',
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             }
         ]
 

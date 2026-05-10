@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { FiShieldOff } from 'react-icons/fi';
 import { FaUserShield } from 'react-icons/fa';
+import { GrUserAdmin } from 'react-icons/gr';
+import { MdReportGmailerrorred, MdReportOff } from 'react-icons/md';
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -103,7 +105,7 @@ const ManageUsers = () => {
                             Swal.fire({
                                 position: "center",
                                 icon: "success",
-                                title: `${user.displayName} marked as an Admin`,
+                                title: `${user.displayName} marked as a Vendor`,
                                 showConfirmButton: false,
                                 timer: 2500
                             });
@@ -134,7 +136,69 @@ const ManageUsers = () => {
                             Swal.fire({
                                 position: "center",
                                 icon: "success",
-                                title: `${user.displayName} removed from Admin`,
+                                title: `${user.displayName} removed from Vendor`,
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+                    })
+            }
+        })
+    }
+    // vendor
+    const handleMakeFraud = user => {
+        const roleInfo = { role: 'fraud' };
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: `User role will be changed to ${roleInfo.role}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Confirm!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        if (res.data.modifiedCount) {
+                            // refresh data
+                            refetch();
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: `${user.displayName} marked as a Fraud`,
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+                        console.log(res.data)
+                    })
+            }
+        })
+    }
+
+    const handleRemoveFraud = user => {
+        const roleInfo = { role: 'user' };
+        Swal.fire({
+            title: "Are you sure?",
+            text: `User role will be changed to ${roleInfo.role}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Confirm!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/${user._id}/role`, roleInfo)
+                    .then(res => {
+                        if (res.data.modifiedCount) {
+                            // refresh data
+                            refetch();
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: `${user.displayName} removed from Fraud`,
                                 showConfirmButton: false,
                                 timer: 2500
                             });
@@ -203,7 +267,7 @@ const ManageUsers = () => {
                                     </td>
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
-                                    <td>
+                                    <td className='flex items-center gap-2'>
                                         <div>
                                             {
                                                 user.role === 'admin' ?
@@ -212,7 +276,7 @@ const ManageUsers = () => {
                                                         className='btn bg-red-500'><FiShieldOff></FiShieldOff></button> :
                                                     <button
                                                         onClick={() => handleMakeAdmin(user)}
-                                                        className='btn bg-primary text-secondary'><FaUserShield></FaUserShield></button>
+                                                        className='btn '><FaUserShield></FaUserShield></button>
                                             }
                                         </div>
                                         <div>
@@ -223,7 +287,18 @@ const ManageUsers = () => {
                                                         className='btn bg-red-500'><FiShieldOff></FiShieldOff></button> :
                                                     <button
                                                         onClick={() => handleMakeVendor(user)}
-                                                        className='btn bg-primary text-secondary'><FaUserShield></FaUserShield></button>
+                                                        className='btn'><GrUserAdmin /></button>
+                                            }
+                                        </div>
+                                        <div>
+                                            {
+                                                user.role === 'fraud' ?
+                                                    <button
+                                                        onClick={() => handleRemoveFraud(user)}
+                                                        className='btn bg-red-500 text-xl'><MdReportOff /></button> :
+                                                    <button
+                                                        onClick={() => handleMakeFraud(user)}
+                                                        className='btn text-xl'><MdReportGmailerrorred /></button>
                                             }
                                         </div>
                                     </td>

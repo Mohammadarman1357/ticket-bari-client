@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaMotorcycle, FaRegCreditCard, FaSwatchbook, FaTasks } from 'react-icons/fa';
-import { FaCircleUser } from 'react-icons/fa6';
+import { FaChartColumn, FaCircleUser } from 'react-icons/fa6';
 import { TbTruckDelivery } from 'react-icons/tb';
 import { Link, NavLink, Outlet } from 'react-router';
 import { RiEBikeFill } from 'react-icons/ri';
@@ -13,7 +13,6 @@ import { LuListCollapse, LuTicketPlus } from 'react-icons/lu';
 import { CgProfile } from 'react-icons/cg';
 import { IoTicketOutline } from 'react-icons/io5';
 import { VscGitPullRequestGoToChanges } from 'react-icons/vsc';
-import { GrOverview } from 'react-icons/gr';
 
 
 const Dashboard = () => {
@@ -63,6 +62,8 @@ const Dashboard = () => {
                             </Link>
                         </li>
 
+
+
                         {/* Our dashboard links*/}
                         <li>
                             <NavLink to="/dashboard/profile" className="focus:bg-primary is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Profile">
@@ -72,7 +73,7 @@ const Dashboard = () => {
 
                         </li>
                         <li>
-                            <NavLink to="/dashboard/booked-tickets" className="focus:bg-primary is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Booked Tickets">
+                            <NavLink to="/dashboard/my-booked-tickets" className="focus:bg-primary is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Booked Tickets">
                                 <span><IoTicketOutline></IoTicketOutline></span>
                                 <span className="is-drawer-close:hidden">My Booked Tickets</span>
                             </NavLink>
@@ -110,7 +111,7 @@ const Dashboard = () => {
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/revenue-overview" className="focus:bg-primary is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Revenue Overview">
-                                        <span><GrOverview /></span>
+                                        <span><FaChartColumn /></span>
                                         <span className="is-drawer-close:hidden">Revenue Overview</span>
                                     </NavLink>
                                 </li>
@@ -121,19 +122,19 @@ const Dashboard = () => {
                         {
                             role === 'admin' && <>
                                 <li>
-                                    <NavLink to="/dashboard/manage-tickets" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Tickets">
+                                    <NavLink to="/dashboard/manage-tickets" className="focus:bg-primary is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Tickets">
                                         <span><MdOutlineManageAccounts /></span>
                                         <span className="is-drawer-close:hidden">Manage Tickets</span>
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/advertise-tickets" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Advertise Tickets">
+                                    <NavLink to="/dashboard/advertise-tickets" className="focus:bg-primary is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Advertise Tickets">
                                         <span><SiGoogleads /></span>
                                         <span className="is-drawer-close:hidden">Advertise Tickets</span>
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/manage-users" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Users">
+                                    <NavLink to="/dashboard/manage-users" className="focus:bg-primary is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Users">
                                         <span><FaCircleUser></FaCircleUser></span>
                                         <span className="is-drawer-close:hidden">Manage Users</span>
                                     </NavLink>

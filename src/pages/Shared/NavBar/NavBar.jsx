@@ -3,10 +3,15 @@ import { Link, NavLink } from 'react-router';
 import { BsArrowUpRightCircleFill } from 'react-icons/bs';
 import useAuth from '../../../hooks/useAuth';
 import Logo from '../../../components/Logo/Logo';
+// import useTheme from '../../../hooks/useTheme';
+import { BiMoon } from 'react-icons/bi';
+import { IoSunny } from 'react-icons/io5';
+import { CgLogOut } from 'react-icons/cg';
 
 const NavBar = () => {
 
     const { user, logOut } = useAuth();
+    // const { theme, toggleTheme } = useTheme();
 
     const handleLogOut = () => {
         logOut()
@@ -20,6 +25,19 @@ const NavBar = () => {
         <li><NavLink to={"/"} className={'text-[#606060] font-medium focus:bg-primary'}>Home</NavLink></li>
         <li><NavLink to="/all-tickets" className={'text-[#606060] font-medium focus:bg-primary'}>All Tickets</NavLink></li>
         <li><NavLink to={"/dashboard"} className={'text-[#606060] font-medium focus:bg-primary'}>Dashboard</NavLink></li>
+        <li>
+            {/* <button
+                onClick={toggleTheme}
+                className="btn btn-circle bg-primary border-none text-secondary"
+            >
+                {theme === "light" ? (
+                    <BiMoon size={20} />
+                ) : (
+                    <IoSunny size={20} />
+                )}
+            </button> */}
+
+        </li>
 
     </>
     return (
@@ -70,19 +88,25 @@ const NavBar = () => {
 
                                 <ul
                                     tabIndex={0}
-                                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                                    className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52"
                                 >
-                                    <li>
-                                        <Link to="/profile">
-                                            <h2 className='text-secondary font-bold text-xl'>My Profile</h2>
-                                        </Link>
-                                    </li>
+                                    <div className='flex flex-col items-center '>
+                                        <span>
+                                            <img className='w-12 h-12 rounded-full items-center' src={user?.photoURL} alt="" />
+                                        </span>
+                                        <h2 className='text-secondary font-semibold text-xl'>{user?.displayName}</h2>
 
-                                    <li>
-                                        <a
-                                            onClick={handleLogOut}
-                                            className="btn hover:btn-primary btn-outline btn-[#606060] text-[#606060] rounded-xl mt-2">LogOut</a>
-                                    </li>
+                                        <Link to="/my-profile">
+                                            <button className='btn btn-primary text-secondary mt-2'>My Profile</button>
+                                        </Link>
+                                        <li onClick={handleLogOut}
+                                            className="mt-2">
+                                            <span className='flex flex-row justify-center gap-2  hover:btn hover:btn-primary hover:text-secondary text-[16px]'>Logout <CgLogOut /></span>
+
+                                        </li>
+
+                                    </div>
+
                                 </ul>
                             </div>
                         )
