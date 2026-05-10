@@ -9,7 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllTickets from "../pages/AllTickets/AllTickets";
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
-import Profile from "../pages/Dashboard/Profile/Profile";
+import Profiles from "../pages/Dashboard/Profiles/Profiles";
 import VendorRoute from "./VendorRoute";
 import AddTickets from "../pages/Dashboard/VendorsPage/AddTickets/AddTickets";
 import MyAddedTickets from "../pages/Dashboard/VendorsPage/MyAddedTickets/MyAddedTickets";
@@ -22,6 +22,10 @@ import ManageUsers from "../pages/Dashboard/AdminPage/ManageUsers/ManageUsers";
 import TransactionHistory from "../pages/Dashboard/TransactionHistory/TransactionHistory";
 import MyBookedTickets from "../pages/Dashboard/MyBookedTickets/MyBookedTickets";
 import MyProfile from "../pages/MyProfile/MyProfile";
+import UpdateTicket from "../pages/Dashboard/VendorsPage/UpdateTicket/UpdateTicket";
+import VendorProfiles from "../pages/Dashboard/VendorsPage/VendorProfiles/VendorProfiles";
+import AdminProfiles from "../pages/Dashboard/AdminPage/AdminProfiles/AdminProfiles";
+import UserProfiles from "../pages/Dashboard/UserProfiles/UserProfiles";
 
 
 
@@ -68,7 +72,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'profile',
-                Component: Profile
+                Component: Profiles
+            },
+            {
+                path: 'user-profiles',
+                Component: UserProfiles
             },
             {
                 path: 'transaction-history',
@@ -86,6 +94,10 @@ export const router = createBrowserRouter([
                 loader: () => fetch('/src/assets/json/busCounter.json').then(res => res.json())
             },
             {
+                path: 'vendor-profiles',
+                element: <VendorRoute><VendorProfiles></VendorProfiles></VendorRoute>
+            },
+            {
                 path: 'my-added-tickets',
                 element: <VendorRoute><MyAddedTickets></MyAddedTickets></VendorRoute>
             },
@@ -97,8 +109,17 @@ export const router = createBrowserRouter([
                 path: 'revenue-overview',
                 element: <VendorRoute><RevenueOverview></RevenueOverview></VendorRoute>
             },
+            {
+                path: 'update-ticket/:ticketId',
+                element: <VendorRoute><UpdateTicket></UpdateTicket></VendorRoute>,
+                loader: () => fetch('/src/assets/json/busCounter.json').then(res => res.json())
+            },
 
             // admin only routes
+            {
+                path: 'admin-profiles',
+                element: <AdminRoute><AdminProfiles></AdminProfiles></AdminRoute>
+            },
             {
                 path: 'manage-tickets',
                 element: <AdminRoute><ManageTickets></ManageTickets></AdminRoute>
