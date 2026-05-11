@@ -20,7 +20,7 @@ const Advertisement = () => {
     })
 
     return (
-        <div className='bg-secondary rounded-4xl p-15 text-center space-y-4 mb-10'>
+        <div className='bg-secondary rounded-4xl p-15 text-center space-y-4'>
             <h2 className='text-white text-4xl font-bold'>Advertisements</h2>
             <p className='font-medium text-[#DADADA] lg:mx-30 md:mx-20'>Experience seamless travel with our top-rated transport services. From luxury seating to real-time tracking, we ensure your journey is comfortable, safe, and always on schedule. Book your preferred seat today and travel without a worry.</p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>

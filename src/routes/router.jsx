@@ -26,6 +26,7 @@ import UpdateTicket from "../pages/Dashboard/VendorsPage/UpdateTicket/UpdateTick
 import VendorProfiles from "../pages/Dashboard/VendorsPage/VendorProfiles/VendorProfiles";
 import AdminProfiles from "../pages/Dashboard/AdminPage/AdminProfiles/AdminProfiles";
 import UserProfiles from "../pages/Dashboard/UserProfiles/UserProfiles";
+import TicketDetails from "../pages/TicketDetails/TicketDetails";
 
 
 
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
             {
                 path: 'my-profile',
                 Component: MyProfile
+            },
+            {
+                path: 'ticket-details/:ticketId',
+                element:<PrivateRoute><TicketDetails></TicketDetails></PrivateRoute>
             }
         ]
     },

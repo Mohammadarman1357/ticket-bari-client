@@ -1,12 +1,11 @@
 import React from 'react';
-import useAxios from '../../hooks/useAxios';
+import useAxios from '../../../hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router';
 import { FaBus, FaCheckCircle } from 'react-icons/fa';
 import { FaTrainSubway } from 'react-icons/fa6';
-import { Link } from 'react-router';
 
-const AllTickets = () => {
-
+const LatestTickets = () => {
 
     const axiosInstance = useAxios();
 
@@ -14,15 +13,14 @@ const AllTickets = () => {
     const { data: tickets = [] } = useQuery({
         queryKey: ['tickets', 'approved'],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/tickets?status=approved`);
+            const res = await axiosInstance.get(`/latest-tickets?status=approved`);
             return res.data;
         }
     })
 
-
     return (
-        <div className='p-5 md:p-10 space-y-5 bg-white rounded-3xl m-2 md:m-6' >
-            <h2 className='text-4xl font-black text-secondary'>Admin Profiles : {tickets.length}</h2>
+        <div className='p-5 md:p-10 space-y-5 bg-white rounded-3xl mb-5' >
+            <h2 className='text-5xl font-black text-secondary'>Latest Tickets</h2>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
@@ -88,4 +86,4 @@ const AllTickets = () => {
     );
 };
 
-export default AllTickets;
+export default LatestTickets;
