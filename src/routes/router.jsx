@@ -27,6 +27,9 @@ import VendorProfiles from "../pages/Dashboard/VendorsPage/VendorProfiles/Vendor
 import AdminProfiles from "../pages/Dashboard/AdminPage/AdminProfiles/AdminProfiles";
 import UserProfiles from "../pages/Dashboard/UserProfiles/UserProfiles";
 import TicketDetails from "../pages/TicketDetails/TicketDetails";
+import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
+import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 
 
 
@@ -48,8 +51,8 @@ export const router = createBrowserRouter([
                 Component: MyProfile
             },
             {
-                path: 'ticket-details/:ticketId',
-                element:<PrivateRoute><TicketDetails></TicketDetails></PrivateRoute>
+                path: 'ticket-details/:id',
+                element: <PrivateRoute><TicketDetails></TicketDetails></PrivateRoute>
             }
         ]
     },
@@ -90,6 +93,18 @@ export const router = createBrowserRouter([
             {
                 path: 'my-booked-tickets',
                 Component: MyBookedTickets
+            },
+            {
+                path: 'payment/:bookingId',
+                Component: Payment
+            },
+            {
+                path: 'payment-success',
+                Component: PaymentSuccess
+            },
+            {
+                path: 'payment-cancelled',
+                Component: PaymentCancelled
             },
 
             // vendor only routes
