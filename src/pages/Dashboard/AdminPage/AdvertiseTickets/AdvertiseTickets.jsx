@@ -53,7 +53,7 @@ const AdvertiseTickets = () => {
                         Swal.fire({
                             position: "center",
                             icon: "success",
-                            title: advertiseRequested ? "You are successfully Advertise!" :"You are successfully Unadvertise!",
+                            title: advertiseRequested ? "You are successfully Advertise tickets!" : "You are successfully Unadvertise the tickets!",
                             showConfirmButton: false,
                             timer: 2000
                         })

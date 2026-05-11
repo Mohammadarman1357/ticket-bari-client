@@ -32,43 +32,9 @@ const AddTickets = () => {
         console.log(data);
 
         // cost calculation
-        const isTrain = data.transportType === 'train';
-        const isNonAC = data.perks === 'nonAC';
-
-        const isSameDistrict = data.districtFrom === data.districtTo;
         const pricePerUnit = parseFloat(data.pricePerUnit);
         const ticketQuantity = parseInt(data.ticketQuantity);
-
-        let cost = 0;
-        const chargeDifferentDistrictTrain = 50;
-        const chargeDifferentDistrictBus = 100;
-        const chargeAC = 100;
         const ticketPrice = pricePerUnit * ticketQuantity;
-
-        if (isTrain) {
-            if (isNonAC) {
-                const extraCharge = ticketPrice + chargeDifferentDistrictTrain;
-                cost = isSameDistrict ? ticketPrice : extraCharge;
-            }
-            else {
-                const sameDistrictCharge = ticketPrice + chargeAC;
-                const extraCharge = ticketPrice + chargeDifferentDistrictTrain + chargeAC;
-                cost = isSameDistrict ? sameDistrictCharge : extraCharge;
-            }
-        }
-        else {  // bus
-            if (isNonAC) {
-                const extraCharge = ticketPrice + chargeDifferentDistrictBus;
-                cost = isSameDistrict ? ticketPrice : extraCharge;
-            }
-            else {
-                const sameDistrictCharge = ticketPrice + chargeAC;
-                const extraCharge = ticketPrice + chargeDifferentDistrictBus + chargeAC;
-                cost = isSameDistrict ? sameDistrictCharge : extraCharge;
-            }
-        }
-        console.log('cost', cost);
-        data.cost = cost;
 
         // image bb convert
         const busImg = data.busImage[0];
@@ -104,14 +70,15 @@ const AddTickets = () => {
                             regionTo: data.regionTo,
                             districtTo: data.districtTo,
                             perks: data.perks,
-                            quantity: ticketQuantity,
-                            pricePerUnit: pricePerUnit,
-                            totalCost: data.cost,
+                            quantity: parseInt(data.ticketQuantity),
+                            pricePerUnit: parseFloat(data.pricePerUnit),
+                            totalCost: ticketPrice,
                             departureTime: data.departureTime,
                             image: photoURL,
                             status: 'pending'
                         };
 
+                        console.log(ticketInfo)
                         axiosSecure.post('/tickets', ticketInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
