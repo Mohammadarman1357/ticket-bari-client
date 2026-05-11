@@ -165,9 +165,9 @@ const MyBookedTickets = () => {
                                             </span>
                                             :
                                             <button
-                                                disabled={isPast || booking.status === 'pending'}
+                                                disabled={isPast || booking.status === 'pending' || booking.status === 'rejected' }
                                                 onClick={() => handlePayment(booking)}
-                                                className={`py-3.5 btn text-secondary font-bold rounded-[8px] ${isPast || booking.status === 'pending'}? 'bg-gray-300 cursor-not-allowed': 'btn-primary hover:shadow-md' `}>
+                                                className={`py-3.5 btn btn-primary hover:shadow-md text-secondary font-bold rounded-[8px] ${isPast || booking.status === 'pending' || 'rejected'} ? 'bg-gray-300 cursor-not-allowed' : 'btn-primary hover:shadow-md' `}>
                                                 Pay NOW
                                             </button>
                                     }
